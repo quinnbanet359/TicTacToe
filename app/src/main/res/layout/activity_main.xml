@@ -186,6 +186,18 @@
         android:layout_alignStart="@+id/btn9"
         android:visibility="invisible"/>
 
+    <TextView
+        android:text="get log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:id="@+id/tv1"
+        tools:textColor="@color/colorAccent"
+        android:visibility="visible"
+        android:onClick="getLog"/>
+
     <!--Overlay for User Choice-->
    <RelativeLayout
          android:layout_width="match_parent"
