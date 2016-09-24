@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.quinnbanet.tictactoe.MainActivity"
+    android:id="@+id/mainGameBoard">
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn1"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/btn5"
+        android:layout_marginEnd="10dp"
+        android:onClick="btn1Click"/>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="btn2Click"/>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn3"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btn5"
+        android:layout_marginStart="10dp"
+        android:onClick="btn3Click"/>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn6"
+        android:layout_alignTop="@+id/btn5"
+        android:layout_alignStart="@+id/btn3"
+        android:onClick="btn6Click"/>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn4"
+        android:layout_alignTop="@+id/btn5"
+        android:layout_alignStart="@+id/btn1"
+        android:onClick="btn4Click"/>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn5"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn2"
+        android:layout_alignStart="@+id/btn2"
+        android:onClick="btn5Click"/>
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn7"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn4"
+        android:layout_alignStart="@+id/btn4"
+        android:onClick="btn7Click"/>
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn8"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn5"
+        android:layout_alignStart="@+id/btn5"
+        android:onClick="btn8Click"/>
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:id="@+id/btn9"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn6"
+        android:layout_alignStart="@+id/btn6"
+        android:onClick="btn9Click"/>
+
+    <!-- X O Switchers -->
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo1"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn1" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/btn2"
+        android:id="@+id/xo2"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn3"
+        android:id="@+id/xo3"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo4"
+        android:layout_alignTop="@+id/btn4"
+        android:layout_alignStart="@+id/btn4"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo5"
+        android:layout_alignTop="@+id/btn5"
+        android:layout_alignStart="@+id/btn5"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo6"
+        android:layout_alignTop="@+id/btn6"
+        android:layout_alignStart="@+id/btn6"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo7"
+        android:layout_alignTop="@+id/btn7"
+        android:layout_alignStart="@+id/btn7"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo8"
+        android:layout_alignTop="@+id/btn8"
+        android:layout_alignStart="@+id/btn8"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/xo9"
+        android:layout_alignTop="@+id/btn9"
+        android:layout_alignStart="@+id/btn9"
+        android:visibility="invisible"/>
+
+    <!--Overlay for User Choice-->
+   <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:id="@+id/overlay"
+         android:background="#AA3F51B5"
+         android:layout_alignParentTop="true"
+         android:layout_alignParentStart="true">
+
+     <RadioGroup
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:background="@android:color/background_light"
+         android:id="@+id/radioGroup">
+
+         <TextView
+             android:text="Player 1:"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/textView"
+             android:layout_weight="1" />
+
+         <RadioButton
+             android:text="X's"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/xBtn"
+             android:layout_weight="1" />
+
+         <RadioButton
+             android:text="O's"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/oBtn"
+             android:layout_weight="1" />
+
+         <Button
+             android:text="Play"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/playGameBtn"
+             android:layout_weight="1"
+             android:onClick="submitBtn"/>
+
+     </RadioGroup>
+     </RelativeLayout>
+</RelativeLayout>
