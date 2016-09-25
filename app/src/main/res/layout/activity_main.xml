@@ -307,6 +307,18 @@
         android:layout_alignBottom="@+id/win789"
         android:layout_alignStart="@+id/win789" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/letter_c"
+        android:layout_alignTop="@+id/xo1"
+        android:layout_alignStart="@+id/xo1"
+        android:layout_alignBottom="@id/btn9"
+        android:id="@+id/winCATS"
+        android:layout_alignEnd="@+id/win123"
+        android:visibility="invisible"/>
+
+
     <!--Overlay for User Choice-->
    <RelativeLayout
          android:layout_width="match_parent"

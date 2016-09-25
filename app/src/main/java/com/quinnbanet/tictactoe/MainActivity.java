@@ -1,28 +1,19 @@
 package com.quinnbanet.tictactoe;
 
-
-import android.content.SyncRequest;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+
     RadioGroup radioGroup;
     RadioButton radioButton;
     int selectedId;
@@ -49,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     String o9Track = "r";
     String xMainTracker = "";
     String oMainTracker = "";
+    String whichFired;
+    Integer p1ScoreTracker;
+    Integer p2ScoreTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("SubmitBtn", player1);
 
+        RESET_LINES();
     }
 
     // ---------------Set each click of tiles to x or o---------------
@@ -94,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x1Track;
                     constantWatcher();
+                    xo1.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo1.setImageResource(R.drawable.o);
@@ -101,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o1Track;
                     constantWatcher();
+                    xo1.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -111,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x1Track;
                     constantWatcher();
+                    xo1.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo1.setImageResource(R.drawable.o);
@@ -118,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o1Track;
                     constantWatcher();
+                    xo1.setTag(R.drawable.o);
                 }
             }
         }
@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn2Click(View view) {
-        constantWatcher();
         ImageView xo2 = (ImageView) findViewById(R.id.xo2);
         // If user / comp has not selected this tile
         if (xo2.getVisibility() == View.INVISIBLE) {
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x2Track;
                     constantWatcher();
+                    xo2.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo2.setImageResource(R.drawable.o);
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o2Track;
                     constantWatcher();
+                    xo2.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -157,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x2Track;
                     constantWatcher();
+                    xo2.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo2.setImageResource(R.drawable.o);
@@ -164,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o2Track;
                     constantWatcher();
+                    xo2.setTag(R.drawable.o);
                 }
             }
         }
@@ -174,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn3Click(View view) {
-        constantWatcher();
         ImageView xo3 = (ImageView) findViewById(R.id.xo3);
         // If user / comp has not selected this tile
         if (xo3.getVisibility() == View.INVISIBLE) {
@@ -186,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x3Track;
                     constantWatcher();
+                    xo3.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo3.setImageResource(R.drawable.o);
@@ -193,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o3Track;
                     constantWatcher();
+                    xo3.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -203,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x3Track;
                     constantWatcher();
+                    xo3.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo3.setImageResource(R.drawable.o);
@@ -210,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o3Track;
                     constantWatcher();
+                    xo3.setTag(R.drawable.x);
                 }
             }
         }
@@ -549,85 +555,104 @@ public class MainActivity extends AppCompatActivity {
         ImageView win789 = (ImageView) findViewById(R.id.win789);
         ImageView win159 = (ImageView) findViewById(R.id.win159);
         ImageView win357 = (ImageView) findViewById(R.id.win357);
+        ImageView cats = (ImageView) findViewById(R.id.winCATS);
+
 
         // Vertical Cases || 1=4=7, 2=5=8, and 3=6=9
         if (sameChars(xMainTracker, x147Win)) {
-            //win147.setVisibility(View.VISIBLE);
+            win147.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
+            whichFired = "X";
         }
         else if (sameChars(oMainTracker, o147Win)) {
-            //win147.setVisibility(View.VISIBLE);
+            win147.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
+            whichFired = "O";
         }
         else if (sameChars(xMainTracker, x258Win)) {
-            //win258.setVisibility(View.VISIBLE);
+            win258.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if(sameChars(oMainTracker, o258Win)) {
-            //win258.setVisibility(View.VISIBLE);
+            win258.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
         else if (sameChars(xMainTracker, x369Win)) {
-            //win369.setVisibility(View.VISIBLE);
+            win369.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if (sameChars(oMainTracker, o369Win)) {
-            //win369.setVisibility(View.VISIBLE);
+            win369.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
 
         // Horizontal Cases|| 1=2=3, 4=5=6, 7=8=9
         else if (sameChars(xMainTracker, x123Win)) {
-            //win123.setVisibility(View.VISIBLE);
+            win123.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
+            whichFired = "x";
         }
         else if (sameChars(oMainTracker, o123Win)) {
-            //win123.setVisibility(View.VISIBLE);
+            win123.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
+            whichFired = "O";
         }
         else if (sameChars(xMainTracker, x456Win)) {
-            //win456.setVisibility(View.VISIBLE);
+            win456.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if(sameChars(oMainTracker, o456Win)) {
-           //win456.setVisibility(View.VISIBLE);
+           win456.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
         else if (sameChars(xMainTracker, x789Win)) {
-            //win789.setVisibility(View.VISIBLE);
+            win789.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if (sameChars(oMainTracker, o789Win)) {
-            //win789.setVisibility(View.VISIBLE);
+            win789.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
 
         // Diagonal Cases || 1=5=9, 3=5=7
         else if (sameChars(xMainTracker, x159Win)) {
-            //win159.setVisibility(View.VISIBLE);
+            win159.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if (sameChars(oMainTracker, o159Win)) {
-            //win159.setVisibility(View.VISIBLE);
+            win159.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
         else if (sameChars(xMainTracker, x357Win)) {
-            //win357.setVisibility(View.VISIBLE);
+            win357.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "X";
         }
         else if (sameChars(oMainTracker, o357Win)) {
-            //win357.setVisibility(View.VISIBLE);
+            win357.setVisibility(View.VISIBLE);
             WIN();
+            whichFired = "O";
         }
         else if (im1.getVisibility() == View.VISIBLE && im2.getVisibility() == View.VISIBLE &&
                  im3.getVisibility() == View.VISIBLE && im4.getVisibility() == View.VISIBLE &&
                  im5.getVisibility() == View.VISIBLE && im6.getVisibility() == View.VISIBLE &&
                  im7.getVisibility() == View.VISIBLE && im8.getVisibility() == View.VISIBLE &&
                  im9.getVisibility() == View.VISIBLE) {
+            cats.setVisibility(View.VISIBLE);
            CATS();
         }
 
@@ -642,17 +667,25 @@ public class MainActivity extends AppCompatActivity {
         TextView score1 = (TextView) findViewById(R.id.player1Score);
         TextView score2 = (TextView) findViewById(R.id.player2Score);
 
-        ps1.setVisibility(View.VISIBLE);
-        ps2.setVisibility(View.VISIBLE);
-        score1.setVisibility(View.VISIBLE);
-        score2.setVisibility(View.VISIBLE);
+        //ps1.setVisibility(View.VISIBLE);
+        //ps2.setVisibility(View.VISIBLE);
+        //score1.setVisibility(View.VISIBLE);
+        //score2.setVisibility(View.VISIBLE);
 
-        // if p1 = x and x wins
-        if (player1 == "X") {
 
+
+       /* if (player1.contains(whichFired)) {
+            p1ScoreTracker++;
+            score1.setText(p1ScoreTracker.toString());
+            Log.d("pls", p1ScoreTracker.toString());
+            Log.d("pls", p2ScoreTracker.toString());
         }
-
-    }
+        else if (player2.contains(whichFired)) {
+            p2ScoreTracker++;
+            score2.setText(p2ScoreTracker.toString());
+            Log.d("pls", p1ScoreTracker.toString());
+            Log.d("pls", p2ScoreTracker.toString());*/
+        }
     public void CATS() {
         RESET();
     }
@@ -682,25 +715,6 @@ public class MainActivity extends AppCompatActivity {
         im7.setVisibility(View.INVISIBLE);
         im8.setVisibility(View.INVISIBLE);
         im9.setVisibility(View.INVISIBLE);
-
-       /* ImageView win147 = (ImageView) findViewById(R.id.win147);
-        ImageView win258 = (ImageView) findViewById(R.id.win258);
-        ImageView win369 = (ImageView) findViewById(R.id.win369);
-        ImageView win123 = (ImageView) findViewById(R.id.win123);
-        ImageView win456 = (ImageView) findViewById(R.id.win456);
-        ImageView win789 = (ImageView) findViewById(R.id.win789);
-        ImageView win159 = (ImageView) findViewById(R.id.win159);
-        ImageView win357 = (ImageView) findViewById(R.id.win357);
-
-        win147.setVisibility(View.INVISIBLE);
-        win147.setVisibility(View.INVISIBLE);
-        win258.setVisibility(View.INVISIBLE);
-        win369.setVisibility(View.INVISIBLE);
-        win123.setVisibility(View.INVISIBLE);
-        win456.setVisibility(View.INVISIBLE);
-        win789.setVisibility(View.INVISIBLE);
-        win159.setVisibility(View.INVISIBLE);
-        win357.setVisibility(View.INVISIBLE); */
     }
 
     private boolean sameChars(String firstStr, String secondStr) {
@@ -711,6 +725,28 @@ public class MainActivity extends AppCompatActivity {
         return Arrays.equals(first, second);
     }
 
+    public void RESET_LINES() {
+        ImageView win147 = (ImageView) findViewById(R.id.win147);
+        ImageView win258 = (ImageView) findViewById(R.id.win258);
+        ImageView win369 = (ImageView) findViewById(R.id.win369);
+        ImageView win123 = (ImageView) findViewById(R.id.win123);
+        ImageView win456 = (ImageView) findViewById(R.id.win456);
+        ImageView win789 = (ImageView) findViewById(R.id.win789);
+        ImageView win159 = (ImageView) findViewById(R.id.win159);
+        ImageView win357 = (ImageView) findViewById(R.id.win357);
+        ImageView cats = (ImageView) findViewById(R.id.winCATS);
+
+
+        cats.setVisibility(View.INVISIBLE);
+        win147.setVisibility(View.INVISIBLE);
+        win258.setVisibility(View.INVISIBLE);
+        win369.setVisibility(View.INVISIBLE);
+        win123.setVisibility(View.INVISIBLE);
+        win456.setVisibility(View.INVISIBLE);
+        win789.setVisibility(View.INVISIBLE);
+        win159.setVisibility(View.INVISIBLE);
+        win357.setVisibility(View.INVISIBLE);
+    }
 }
 
 
