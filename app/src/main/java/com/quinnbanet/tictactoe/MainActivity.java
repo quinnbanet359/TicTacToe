@@ -1,6 +1,7 @@
 package com.quinnbanet.tictactoe;
 
 
+import android.content.SyncRequest;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
@@ -17,36 +18,34 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton radioButton;
     String player1;
     String player2;
     Integer playerCount = 1;
-    Integer x1Track = 11;
-    Integer x2Track = 12;
-    Integer x3Track = 13;
-    Integer x4Track = 14;
-    Integer x5Track = 15;
-    Integer x6Track = 16;
-    Integer x7Track = 17;
-    Integer x8Track = 18;
-    Integer x9Track = 19;
-    Integer o1Track = 1;
-    Integer o2Track = 2;
-    Integer o3Track = 3;
-    Integer o4Track = 4;
-    Integer o5Track = 5;
-    Integer o6Track = 6;
-    Integer o7Track = 7;
-    Integer o8Track = 8;
-    Integer o9Track = 9;
-    Integer xMainTracker = 1;
-    Integer oMainTracker = 1;
-
-
-   // Button startGame = (Button) findViewById(R.id.playGameBtn);
-
+    String x1Track = "a";
+    String x2Track = "b";
+    String x3Track = "c";
+    String x4Track = "d";
+    String x5Track = "e";
+    String x6Track = "f";
+    String x7Track = "g";
+    String x8Track = "h";
+    String x9Track = "i";
+    String o1Track = "j";
+    String o2Track = "k";
+    String o3Track = "l";
+    String o4Track = "m";
+    String o5Track = "n";
+    String o6Track = "o";
+    String o7Track = "p";
+    String o8Track = "q";
+    String o9Track = "r";
+    String xMainTracker = "";
+    String oMainTracker = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     // When submit btn is clicked get user input and close
     // x & o choice
-    public void submitBtn(View view){
+    public void submitBtn(View view) {
         RelativeLayout rl1 = (RelativeLayout) findViewById(R.id.overlay);
         rl1.setVisibility(View.GONE);
 
@@ -68,56 +67,55 @@ public class MainActivity extends AppCompatActivity {
         if (selectedId == R.id.xBtn) {
             player1 = "X";
             player2 = "O";
-        }
-        else if (selectedId == R.id.oBtn) {
+        } else if (selectedId == R.id.oBtn) {
             player1 = "O";
             player2 = "X";
+        } else {
+            player1 = "You're not very good at this stuff d00d";
         }
-        else{
-            player1="You're not very good at this stuff d00d";
-    }
         Log.d("SubmitBtn", player1);
-      gameEval();
+
     }
 
     // ---------------Set each click of tiles to x or o---------------
-                // odd playerCount = player1 Turn
-                // even playerCount = player2 Turn
-                // x = minimum height 1
-                // o = minimum height 2
+    // odd playerCount = player1 Turn
+    // even playerCount = player2 Turn
     public void btn1Click(View view) {
         ImageView xo1 = (ImageView) findViewById(R.id.xo1);
         // If user / comp has not selected this tile
-        if (xo1.getVisibility()==View.INVISIBLE) {
+        if (xo1.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo1.setImageResource(R.drawable.x);
                     xo1.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x1Track;
+                    xMainTracker = xMainTracker + x1Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo1.setImageResource(R.drawable.o);
                     xo1.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o1Track;
+                    oMainTracker = oMainTracker + o1Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo1.setImageResource(R.drawable.x);
                     xo1.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x1Track;
+                    xMainTracker = xMainTracker + x1Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo1.setImageResource(R.drawable.o);
                     xo1.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o1Track;
+                    oMainTracker = oMainTracker + o1Track;
+                    constantWatcher();
                 }
             }
         }
@@ -128,38 +126,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn2Click(View view) {
+        constantWatcher();
         ImageView xo2 = (ImageView) findViewById(R.id.xo2);
         // If user / comp has not selected this tile
-        if (xo2.getVisibility()==View.INVISIBLE) {
+        if (xo2.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo2.setImageResource(R.drawable.x);
                     xo2.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x2Track;
+                    xMainTracker = xMainTracker + x2Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo2.setImageResource(R.drawable.o);
                     xo2.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o2Track;
+                    oMainTracker = oMainTracker + o2Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo2.setImageResource(R.drawable.x);
                     xo2.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x2Track;
+                    xMainTracker = xMainTracker + x2Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo2.setImageResource(R.drawable.o);
                     xo2.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o2Track;
+                    oMainTracker = oMainTracker + o2Track;
+                    constantWatcher();
                 }
             }
         }
@@ -170,38 +172,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn3Click(View view) {
+        constantWatcher();
         ImageView xo3 = (ImageView) findViewById(R.id.xo3);
         // If user / comp has not selected this tile
-        if (xo3.getVisibility()==View.INVISIBLE) {
+        if (xo3.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo3.setImageResource(R.drawable.x);
                     xo3.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x3Track;
+                    xMainTracker = xMainTracker + x3Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo3.setImageResource(R.drawable.o);
                     xo3.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o3Track;
+                    oMainTracker = oMainTracker + o3Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo3.setImageResource(R.drawable.x);
                     xo3.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x3Track;
+                    xMainTracker = xMainTracker + x3Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo3.setImageResource(R.drawable.o);
                     xo3.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o3Track;
+                    oMainTracker = oMainTracker + o3Track;
+                    constantWatcher();
                 }
             }
         }
@@ -212,38 +218,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn4Click(View view) {
+        constantWatcher();
         ImageView xo4 = (ImageView) findViewById(R.id.xo4);
         // If user / comp has not selected this tile
-        if (xo4.getVisibility()==View.INVISIBLE) {
+        if (xo4.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo4.setImageResource(R.drawable.x);
                     xo4.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x4Track;
+                    xMainTracker = xMainTracker + x4Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo4.setImageResource(R.drawable.o);
                     xo4.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o4Track;
+                    oMainTracker = oMainTracker + o4Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo4.setImageResource(R.drawable.x);
                     xo4.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x4Track;
+                    xMainTracker = xMainTracker + x4Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo4.setImageResource(R.drawable.o);
                     xo4.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o4Track;
+                    oMainTracker = oMainTracker + o4Track;
+                    constantWatcher();
                 }
             }
         }
@@ -254,38 +264,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn5Click(View view) {
+        constantWatcher();
         ImageView xo5 = (ImageView) findViewById(R.id.xo5);
         // If user / comp has not selected this tile
-        if (xo5.getVisibility()==View.INVISIBLE) {
+        if (xo5.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo5.setImageResource(R.drawable.x);
                     xo5.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x5Track;
+                    xMainTracker = xMainTracker + x5Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo5.setImageResource(R.drawable.o);
                     xo5.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o5Track;
+                    oMainTracker = oMainTracker + o5Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo5.setImageResource(R.drawable.x);
                     xo5.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x5Track;
+                    xMainTracker = xMainTracker + x5Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo5.setImageResource(R.drawable.o);
                     xo5.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o5Track;
+                    oMainTracker = oMainTracker + o5Track;
+                    constantWatcher();
                 }
             }
         }
@@ -296,38 +310,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn6Click(View view) {
+        constantWatcher();
         ImageView xo6 = (ImageView) findViewById(R.id.xo6);
         // If user / comp has not selected this tile
-        if (xo6.getVisibility()==View.INVISIBLE) {
+        if (xo6.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo6.setImageResource(R.drawable.x);
                     xo6.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x6Track;
+                    xMainTracker = xMainTracker + x6Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo6.setImageResource(R.drawable.o);
                     xo6.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o6Track;
+                    oMainTracker = oMainTracker + o6Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo6.setImageResource(R.drawable.x);
                     xo6.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x6Track;
+                    xMainTracker = xMainTracker + x6Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo6.setImageResource(R.drawable.o);
                     xo6.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o6Track;
+                    oMainTracker = oMainTracker + o6Track;
+                    constantWatcher();
                 }
             }
         }
@@ -338,38 +356,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn7Click(View view) {
+        constantWatcher();
         ImageView xo7 = (ImageView) findViewById(R.id.xo7);
         // If user / comp has not selected this tile
-        if (xo7.getVisibility()==View.INVISIBLE) {
+        if (xo7.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo7.setImageResource(R.drawable.x);
                     xo7.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x7Track;
+                    xMainTracker = xMainTracker + x7Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo7.setImageResource(R.drawable.o);
                     xo7.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o7Track;
+                    oMainTracker = oMainTracker + o7Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo7.setImageResource(R.drawable.x);
                     xo7.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x7Track;
+                    xMainTracker = xMainTracker + x7Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo7.setImageResource(R.drawable.o);
                     xo7.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o7Track;
+                    oMainTracker = oMainTracker + o7Track;
+                    constantWatcher();
                 }
             }
         }
@@ -380,38 +402,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn8Click(View view) {
+        constantWatcher();
         ImageView xo8 = (ImageView) findViewById(R.id.xo8);
         // If user / comp has not selected this tile
-        if (xo8.getVisibility()==View.INVISIBLE) {
+        if (xo8.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo8.setImageResource(R.drawable.x);
                     xo8.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x8Track;
+                    xMainTracker = xMainTracker + x8Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo8.setImageResource(R.drawable.o);
                     xo8.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o8Track;
+                    oMainTracker = oMainTracker + o8Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo8.setImageResource(R.drawable.x);
                     xo8.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x8Track;
+                    xMainTracker = xMainTracker + x8Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo8.setImageResource(R.drawable.o);
                     xo8.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o8Track;
+                    oMainTracker = oMainTracker + o8Track;
+                    constantWatcher();
                 }
             }
         }
@@ -422,38 +448,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btn9Click(View view) {
+        constantWatcher();
         ImageView xo9 = (ImageView) findViewById(R.id.xo9);
         // If user / comp has not selected this tile
-        if (xo9.getVisibility()==View.INVISIBLE) {
+        if (xo9.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
                 if (player2 == "X") {
                     xo9.setImageResource(R.drawable.x);
                     xo9.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x9Track;
+                    xMainTracker = xMainTracker + x9Track;
+                    constantWatcher();
                 }
                 if (player2 == "O") {
                     xo9.setImageResource(R.drawable.o);
                     xo9.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o9Track;
+                    oMainTracker = oMainTracker + o9Track;
+                    constantWatcher();
                 }
-            }
-            else {
+            } else {
                 //player1 turn
                 // if != x or o
                 if (player1 == "X") {
                     xo9.setImageResource(R.drawable.x);
                     xo9.setVisibility(View.VISIBLE);
                     playerCount++;
-                    xMainTracker = xMainTracker * x9Track;
+                    xMainTracker = xMainTracker + x9Track;
+                    constantWatcher();
                 }
                 if (player1 == "O") {
                     xo9.setImageResource(R.drawable.o);
                     xo9.setVisibility(View.VISIBLE);
                     playerCount++;
-                    oMainTracker = oMainTracker * o9Track;
+                    oMainTracker = oMainTracker + o9Track;
+                    constantWatcher();
                 }
             }
         }
@@ -469,27 +499,40 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test", oMainTracker.toString());
     }
 
+    public void constantWatcher() {
+        //Set gameEval(); watcher on each player move
+        if (playerCount > 4) //minimum turns to win = 5
+            for (int i = 1; i < 1000; i++) { //<1000 for infinite plays
+                if (i == playerCount) {
+                    gameEval();
+                    Log.d("test","count is" + i);
+                }
+            }
+    }
+
     //---------------Evaluate Game Win/Tie/Loss-----------------
     public void gameEval() {
-        //TODO: Implement game logic: if a combo of TTT is successful display player x wins
-        //TODO: evaluate by if 147 is all x then its a win if 147 is all o its a win...etc
-        Integer x147Win = 2618;
-        Integer x258Win = 3240;
-        Integer x369Win = 3952;
-        Integer x123Win = 1716;
-        Integer x456Win = 3360;
-        Integer x789Win = 5814;
-        Integer x159Win = 3135;
-        Integer x357Win = 3315;
+        //Log.d("test","gameEval triggered");
+        Log.d("test", "xtrack:" + xMainTracker.toString());
+        Log.d("test", "otrack:" + oMainTracker.toString());
 
-        Integer o147Win = 28;
-        Integer o258Win = 80;
-        Integer o369Win = 162;
-        Integer o123Win = 6;
-        Integer o456Win = 120;
-        Integer o789Win = 504;
-        Integer o159Win = 45;
-        Integer o357Win = 105;
+        String x147Win = "adg";
+        String x258Win = "beh";
+        String x369Win = "cfi";
+        String x123Win = "abc";
+        String x456Win = "def";
+        String x789Win = "ghi";
+        String x159Win = "aei";
+        String x357Win = "ceg";
+
+        String o147Win = "jmp";
+        String o258Win = "knq";
+        String o369Win = "lor";
+        String o123Win = "jkl";
+        String o456Win = "mno";
+        String o789Win = "pqr";
+        String o159Win = "jnr";
+        String o357Win = "lnp";
 
         ImageView im1 = (ImageView) findViewById(R.id.xo1);
         ImageView im2 = (ImageView) findViewById(R.id.xo2);
@@ -500,47 +543,83 @@ public class MainActivity extends AppCompatActivity {
         ImageView im7 = (ImageView) findViewById(R.id.xo7);
         ImageView im8 = (ImageView) findViewById(R.id.xo8);
         ImageView im9 = (ImageView) findViewById(R.id.xo9);
-        TextView tv1 = (TextView) findViewById(R.id.tv1);
-        Integer minTurnsToWin = 4;
 
-        // if minimum turns to win
-        //if (playerCount > minTurnsToWin) {
-            // Log.d("test", "playercount >4");
-            // Vertical Cases || 1=4=7, 2=5=8, and 3=6=9
-                if (xMainTracker == x147Win) {
-                    Log.d("pls", "good job puppo, ya did it");
-                }
+        // Vertical Cases || 1=4=7, 2=5=8, and 3=6=9
+        if (xMainTracker == x147Win || oMainTracker == o147Win) {
+            WIN();
+            Log.d("test", "good job, ya did it");
+        }
+        else if (xMainTracker == x258Win || oMainTracker == o258Win) {
+            WIN();
+        }
+        else if (xMainTracker == x369Win || oMainTracker == o369Win) {
+            WIN();
+        }
 
-            // Horizontal Cases|| 1=2=3, 4=5=6, 7=8=9
-            // xtracker = -4, -7, or -10
-            // o tracker = 6, 120, or 504
-            if (xMainTracker == -4 || xMainTracker == -7 || xMainTracker == -10 ||
-                oMainTracker == 6 || oMainTracker == 120 || oMainTracker == 504) {
-                tv1.setVisibility(View.VISIBLE);
-                Log.d("test", xMainTracker.toString());
+        // Horizontal Cases|| 1=2=3, 4=5=6, 7=8=9
+        else if (xMainTracker == x123Win || oMainTracker == o123Win) {
+            WIN();
+            Log.d("test", "good job, ya did it");
+        }
+        else if (xMainTracker == x456Win || oMainTracker == o456Win) {
+            WIN();
+        }
+        else if (xMainTracker == x789Win || oMainTracker == o789Win) {
+            WIN();
+        }
 
-                // Diagonal Cases || 1=5=9, 3=5=7
-            }
-            if (im1.getMinimumHeight() == im3.getMinimumHeight()) {
-                Log.d("pls", "x's are same");
-            }
-            if (im1.getMinimumHeight() == im2.getMinimumHeight()) {
-                Log.d("pls", "wrong, x=o");
-            }
-            if (im2.getMinimumHeight() == im4.getMinimumHeight()) {
-                Log.d("pls", "o's are same");
-            }
-        /*Log.d("pls",im1.getMinimumHeight());
-        Log.d("pls",im2.getDrawingCache().toString());
-        Log.d("pls",im3.getDrawingCache().toString());
-        Log.d("pls",im4.getDrawingCache().toString());*/
-
-        //}
-
+        // Diagonal Cases || 1=5=9, 3=5=7
+        else if (xMainTracker == x159Win || oMainTracker == o159Win) {
+            WIN();
+        }
+        else if (xMainTracker == x357Win || oMainTracker == o357Win) {
+            WIN();
+        }
+        else if (im1.getVisibility() == View.VISIBLE && im2.getVisibility() == View.VISIBLE &&
+                 im3.getVisibility() == View.VISIBLE && im4.getVisibility() == View.VISIBLE &&
+                 im5.getVisibility() == View.VISIBLE && im6.getVisibility() == View.VISIBLE &&
+                 im7.getVisibility() == View.VISIBLE && im8.getVisibility() == View.VISIBLE &&
+                 im9.getVisibility() == View.VISIBLE) {
+           CATS();
+        }
 
     }
 
 
+    public void WIN() {
+        RESET();
+    }
+    public void CATS() {
+        RESET();
+    }
+    public void RESET() {
+        RelativeLayout rl1 = (RelativeLayout) findViewById(R.id.overlay);
+        rl1.setVisibility(View.VISIBLE);
+        playerCount = 1;
+        xMainTracker = "";
+        oMainTracker = "";
+
+        ImageView im1 = (ImageView) findViewById(R.id.xo1);
+        ImageView im2 = (ImageView) findViewById(R.id.xo2);
+        ImageView im3 = (ImageView) findViewById(R.id.xo3);
+        ImageView im4 = (ImageView) findViewById(R.id.xo4);
+        ImageView im5 = (ImageView) findViewById(R.id.xo5);
+        ImageView im6 = (ImageView) findViewById(R.id.xo6);
+        ImageView im7 = (ImageView) findViewById(R.id.xo7);
+        ImageView im8 = (ImageView) findViewById(R.id.xo8);
+        ImageView im9 = (ImageView) findViewById(R.id.xo9);
+
+        im1.setVisibility(View.INVISIBLE);
+        im2.setVisibility(View.INVISIBLE);
+        im3.setVisibility(View.INVISIBLE);
+        im4.setVisibility(View.INVISIBLE);
+        im5.setVisibility(View.INVISIBLE);
+        im6.setVisibility(View.INVISIBLE);
+        im7.setVisibility(View.INVISIBLE);
+        im8.setVisibility(View.INVISIBLE);
+        im9.setVisibility(View.INVISIBLE);
+
+    }
 }
 
 
