@@ -19,10 +19,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton radioButton;
+    int selectedId;
     String player1;
     String player2;
     Integer playerCount = 1;
@@ -60,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
         rl1.setVisibility(View.GONE);
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        int selectedId = radioGroup.getCheckedRadioButtonId();
+        selectedId = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(selectedId);
-
 
         if (selectedId == R.id.xBtn) {
             player1 = "X";
@@ -494,18 +496,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getLog(View view) {
-        Log.d("test", xMainTracker.toString());
-        Log.d("test", oMainTracker.toString());
-    }
-
     public void constantWatcher() {
         //Set gameEval(); watcher on each player move
-        if (playerCount > 4) //minimum turns to win = 5
+        if (playerCount > 5) //minimum turns to win = 5
             for (int i = 1; i < 1000; i++) { //<1000 for infinite plays
                 if (i == playerCount) {
                     gameEval();
-                    Log.d("test","count is" + i);
+                    //Log.d("test","count is" + i);
                 }
             }
     }
@@ -513,7 +510,7 @@ public class MainActivity extends AppCompatActivity {
     //---------------Evaluate Game Win/Tie/Loss-----------------
     public void gameEval() {
         //Log.d("test","gameEval triggered");
-        Log.d("test", "xtrack:" + xMainTracker.toString());
+        Log.d("test", xMainTracker);
         Log.d("test", "otrack:" + oMainTracker.toString());
 
         String x147Win = "adg";
@@ -544,35 +541,86 @@ public class MainActivity extends AppCompatActivity {
         ImageView im8 = (ImageView) findViewById(R.id.xo8);
         ImageView im9 = (ImageView) findViewById(R.id.xo9);
 
+        ImageView win147 = (ImageView) findViewById(R.id.win147);
+        ImageView win258 = (ImageView) findViewById(R.id.win258);
+        ImageView win369 = (ImageView) findViewById(R.id.win369);
+        ImageView win123 = (ImageView) findViewById(R.id.win123);
+        ImageView win456 = (ImageView) findViewById(R.id.win456);
+        ImageView win789 = (ImageView) findViewById(R.id.win789);
+        ImageView win159 = (ImageView) findViewById(R.id.win159);
+        ImageView win357 = (ImageView) findViewById(R.id.win357);
+
         // Vertical Cases || 1=4=7, 2=5=8, and 3=6=9
-        if (xMainTracker == x147Win || oMainTracker == o147Win) {
+        if (sameChars(xMainTracker, x147Win)) {
+            //win147.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
         }
-        else if (xMainTracker == x258Win || oMainTracker == o258Win) {
+        else if (sameChars(oMainTracker, o147Win)) {
+            //win147.setVisibility(View.VISIBLE);
+            WIN();
+            Log.d("test", "good job, ya did it");
+        }
+        else if (sameChars(xMainTracker, x258Win)) {
+            //win258.setVisibility(View.VISIBLE);
             WIN();
         }
-        else if (xMainTracker == x369Win || oMainTracker == o369Win) {
+        else if(sameChars(oMainTracker, o258Win)) {
+            //win258.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(xMainTracker, x369Win)) {
+            //win369.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(oMainTracker, o369Win)) {
+            //win369.setVisibility(View.VISIBLE);
             WIN();
         }
 
         // Horizontal Cases|| 1=2=3, 4=5=6, 7=8=9
-        else if (xMainTracker == x123Win || oMainTracker == o123Win) {
+        else if (sameChars(xMainTracker, x123Win)) {
+            //win123.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
         }
-        else if (xMainTracker == x456Win || oMainTracker == o456Win) {
+        else if (sameChars(oMainTracker, o123Win)) {
+            //win123.setVisibility(View.VISIBLE);
+            WIN();
+            Log.d("test", "good job, ya did it");
+        }
+        else if (sameChars(xMainTracker, x456Win)) {
+            //win456.setVisibility(View.VISIBLE);
             WIN();
         }
-        else if (xMainTracker == x789Win || oMainTracker == o789Win) {
+        else if(sameChars(oMainTracker, o456Win)) {
+           //win456.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(xMainTracker, x789Win)) {
+            //win789.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(oMainTracker, o789Win)) {
+            //win789.setVisibility(View.VISIBLE);
             WIN();
         }
 
         // Diagonal Cases || 1=5=9, 3=5=7
-        else if (xMainTracker == x159Win || oMainTracker == o159Win) {
+        else if (sameChars(xMainTracker, x159Win)) {
+            //win159.setVisibility(View.VISIBLE);
             WIN();
         }
-        else if (xMainTracker == x357Win || oMainTracker == o357Win) {
+        else if (sameChars(oMainTracker, o159Win)) {
+            //win159.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(xMainTracker, x357Win)) {
+            //win357.setVisibility(View.VISIBLE);
+            WIN();
+        }
+        else if (sameChars(oMainTracker, o357Win)) {
+            //win357.setVisibility(View.VISIBLE);
             WIN();
         }
         else if (im1.getVisibility() == View.VISIBLE && im2.getVisibility() == View.VISIBLE &&
@@ -588,6 +636,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void WIN() {
         RESET();
+
+        TextView ps1 = (TextView) findViewById(R.id.p1s);
+        TextView ps2 = (TextView) findViewById(R.id.p2s);
+        TextView score1 = (TextView) findViewById(R.id.player1Score);
+        TextView score2 = (TextView) findViewById(R.id.player2Score);
+
+        ps1.setVisibility(View.VISIBLE);
+        ps2.setVisibility(View.VISIBLE);
+        score1.setVisibility(View.VISIBLE);
+        score2.setVisibility(View.VISIBLE);
+
+        // if p1 = x and x wins
+        if (player1 == "X") {
+
+        }
+
     }
     public void CATS() {
         RESET();
@@ -619,7 +683,34 @@ public class MainActivity extends AppCompatActivity {
         im8.setVisibility(View.INVISIBLE);
         im9.setVisibility(View.INVISIBLE);
 
+       /* ImageView win147 = (ImageView) findViewById(R.id.win147);
+        ImageView win258 = (ImageView) findViewById(R.id.win258);
+        ImageView win369 = (ImageView) findViewById(R.id.win369);
+        ImageView win123 = (ImageView) findViewById(R.id.win123);
+        ImageView win456 = (ImageView) findViewById(R.id.win456);
+        ImageView win789 = (ImageView) findViewById(R.id.win789);
+        ImageView win159 = (ImageView) findViewById(R.id.win159);
+        ImageView win357 = (ImageView) findViewById(R.id.win357);
+
+        win147.setVisibility(View.INVISIBLE);
+        win147.setVisibility(View.INVISIBLE);
+        win258.setVisibility(View.INVISIBLE);
+        win369.setVisibility(View.INVISIBLE);
+        win123.setVisibility(View.INVISIBLE);
+        win456.setVisibility(View.INVISIBLE);
+        win789.setVisibility(View.INVISIBLE);
+        win159.setVisibility(View.INVISIBLE);
+        win357.setVisibility(View.INVISIBLE); */
     }
+
+    private boolean sameChars(String firstStr, String secondStr) {
+        char[] first = firstStr.toCharArray();
+        char[] second = secondStr.toCharArray();
+        Arrays.sort(first);
+        Arrays.sort(second);
+        return Arrays.equals(first, second);
+    }
+
 }
 
 

@@ -187,19 +187,128 @@
         android:visibility="invisible"/>
 
     <TextView
-        android:text="get log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn8"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/btn7"
+        android:layout_below="@+id/btn7"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/btn7"
+        android:id="@+id/p1s"
+        android:text="Player 1 Score:"
+        android:visibility="invisible"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/btn7"
+        android:layout_below="@+id/p1s"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/btn7"
+        android:id="@+id/player1Score"
+        android:visibility="invisible"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/btn9"
+        android:layout_below="@+id/btn9"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/btn9"
+        android:id="@+id/p2s"
+        android:text="Player 2 Score"
+        android:visibility="invisible"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/btn9"
+        android:layout_below="@+id/p2s"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/btn9"
+        android:id="@+id/player2Score"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/bar"
+        android:layout_alignEnd="@+id/xo1"
+        android:layout_marginEnd="19dp"
+        android:id="@+id/win147"
+        android:layout_above="@+id/p1s"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/bar"
+        android:layout_alignEnd="@+id/xo2"
+        android:layout_marginEnd="19dp"
+        android:id="@+id/win258"
+        android:layout_above="@+id/p1s"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/bar"
+        android:layout_alignEnd="@+id/xo3"
+        android:layout_marginEnd="19dp"
+        android:id="@+id/win369"
+        android:layout_above="@+id/p1s"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/bar_hoizontal"
+        android:id="@+id/win123"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/tv1"
-        tools:textColor="@color/colorAccent"
-        android:visibility="visible"
-        android:onClick="getLog"/>
+        android:layout_above="@+id/btn6" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/bar_hoizontal"
+        android:id="@+id/win456"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/btn7"
+        android:layout_below="@+id/btn1" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/bar_hoizontal"
+        android:id="@+id/win789"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/xo7"
+        android:layout_alignEnd="@+id/btn9"
+        android:layout_above="@+id/player1Score"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/bar_hoizontal"
+        android:id="@+id/win159"
+        android:visibility="invisible"
+        android:rotation="45"
+        android:layout_alignBottom="@+id/player1Score"
+        android:layout_alignStart="@+id/xo1"
+        android:layout_marginBottom="12dp" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/bar_hoizontal"
+        android:id="@+id/win357"
+        android:visibility="invisible"
+        android:rotation="315"
+        android:layout_alignBottom="@+id/win789"
+        android:layout_alignStart="@+id/win789" />
 
     <!--Overlay for User Choice-->
-   <!-- <RelativeLayout
+   <RelativeLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:id="@+id/overlay"
