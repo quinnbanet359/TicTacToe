@@ -1,3 +1,26 @@
+/*
+Quinn Banet
+9/26/16
+Tic Tac Toe
+
+
+This is a simple TicTacToe app that lets two users play tic tac toe.
+This works by assigning each value a letter, then checking the winning
+combinations for those letter sequences.
+
+ie:  refer to game board below: if a user wins with a diagonal (159, 195, 519, 591, 951, or 915)
+     the xMainTracker would contain string values of aei and oMainTracker would contain string
+     values of jnr. refer to gameEval(); for evaluation methods
+
+ 1 | 2 | 3
+ __|___|___
+ 4 | 5 | 6
+ __|___|___
+ 7 | 8 | 9
+
+
+
+*/
 package com.quinnbanet.tictactoe;
 
 import android.support.v7.app.AppCompatActivity;
@@ -5,7 +28,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,9 +35,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    RadioGroup radioGroup;
-    RadioButton radioButton;
-    int selectedId;
     String player1;
     String player2;
     Integer playerCount = 1;
@@ -56,21 +75,20 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout rl1 = (RelativeLayout) findViewById(R.id.overlay);
         rl1.setVisibility(View.GONE);
 
+        RadioGroup radioGroup;
+        int selectedId;
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         selectedId = radioGroup.getCheckedRadioButtonId();
-        radioButton = (RadioButton) findViewById(selectedId);
 
         if (selectedId == R.id.xBtn) {
             player1 = "X";
             player2 = "O";
-        } else if (selectedId == R.id.oBtn) {
+        }
+        else if (selectedId == R.id.oBtn) {
             player1 = "O";
             player2 = "X";
-        } else {
-            player1 = "You're not very good at this stuff d00d";
         }
-        Log.d("SubmitBtn", player1);
-
+        
         RESET_LINES();
     }
 
@@ -78,8 +96,9 @@ public class MainActivity extends AppCompatActivity {
     // odd playerCount = player1 Turn
     // even playerCount = player2 Turn
     public void btn1Click(View view) {
+        constantWatcher();
         ImageView xo1 = (ImageView) findViewById(R.id.xo1);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo1.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -89,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x1Track;
                     constantWatcher();
-                    xo1.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo1.setImageResource(R.drawable.o);
@@ -97,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o1Track;
                     constantWatcher();
-                    xo1.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -108,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x1Track;
                     constantWatcher();
-                    xo1.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo1.setImageResource(R.drawable.o);
@@ -116,19 +132,19 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o1Track;
                     constantWatcher();
-                    xo1.setTag(R.drawable.o);
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
 
     }
     public void btn2Click(View view) {
+        constantWatcher();
         ImageView xo2 = (ImageView) findViewById(R.id.xo2);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo2.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -138,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x2Track;
                     constantWatcher();
-                    xo2.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo2.setImageResource(R.drawable.o);
@@ -146,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o2Track;
                     constantWatcher();
-                    xo2.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -157,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x2Track;
                     constantWatcher();
-                    xo2.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo2.setImageResource(R.drawable.o);
@@ -165,19 +178,19 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o2Track;
                     constantWatcher();
-                    xo2.setTag(R.drawable.o);
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
 
     }
     public void btn3Click(View view) {
+        constantWatcher();
         ImageView xo3 = (ImageView) findViewById(R.id.xo3);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo3.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -187,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x3Track;
                     constantWatcher();
-                    xo3.setTag(R.drawable.x);
                 }
                 if (player2 == "O") {
                     xo3.setImageResource(R.drawable.o);
@@ -195,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o3Track;
                     constantWatcher();
-                    xo3.setTag(R.drawable.o);
                 }
             } else {
                 //player1 turn
@@ -206,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     xMainTracker = xMainTracker + x3Track;
                     constantWatcher();
-                    xo3.setTag(R.drawable.x);
                 }
                 if (player1 == "O") {
                     xo3.setImageResource(R.drawable.o);
@@ -214,11 +224,10 @@ public class MainActivity extends AppCompatActivity {
                     playerCount++;
                     oMainTracker = oMainTracker + o3Track;
                     constantWatcher();
-                    xo3.setTag(R.drawable.x);
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -227,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn4Click(View view) {
         constantWatcher();
         ImageView xo4 = (ImageView) findViewById(R.id.xo4);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo4.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -264,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -273,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn5Click(View view) {
         constantWatcher();
         ImageView xo5 = (ImageView) findViewById(R.id.xo5);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo5.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -310,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -319,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn6Click(View view) {
         constantWatcher();
         ImageView xo6 = (ImageView) findViewById(R.id.xo6);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo6.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -356,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -365,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn7Click(View view) {
         constantWatcher();
         ImageView xo7 = (ImageView) findViewById(R.id.xo7);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo7.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -402,7 +411,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -411,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn8Click(View view) {
         constantWatcher();
         ImageView xo8 = (ImageView) findViewById(R.id.xo8);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo8.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -448,7 +457,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -457,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn9Click(View view) {
         constantWatcher();
         ImageView xo9 = (ImageView) findViewById(R.id.xo9);
-        // If user / comp has not selected this tile
+        // If user1 / user 2 has not selected this tile
         if (xo9.getVisibility() == View.INVISIBLE) {
             if (playerCount % 2 == 0) {
                 //player2 turn
@@ -494,7 +503,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //User / comp selected an existing tile
+        //user1 / user 2 selected an existing tile
         else {
 
         }
@@ -504,7 +513,7 @@ public class MainActivity extends AppCompatActivity {
     public void constantWatcher() {
         //Set gameEval(); watcher on each player move
         if (playerCount > 5) //minimum turns to win = 5
-            for (int i = 1; i < 1000; i++) { //<1000 for infinite plays
+            for (int i = 1; i < 1000; i++) { // for infinite triggers of gameEval();
                 if (i == playerCount) {
                     gameEval();
                     //Log.d("test","count is" + i);
@@ -514,9 +523,9 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------Evaluate Game Win/Tie/Loss-----------------
     public void gameEval() {
-        //Log.d("test","gameEval triggered");
+        Log.d("test","gameEval triggered");
         Log.d("test", xMainTracker);
-        Log.d("test", "otrack:" + oMainTracker.toString());
+        Log.d("test", oMainTracker);
 
         ImageView im1 = (ImageView) findViewById(R.id.xo1);
         ImageView im2 = (ImageView) findViewById(R.id.xo2);
@@ -576,13 +585,11 @@ public class MainActivity extends AppCompatActivity {
         else if (xMainTracker.contains("a") && xMainTracker.contains("b") && xMainTracker.contains("c")) {
             win123.setVisibility(View.VISIBLE);
             WIN();
-            Log.d("test", "good job, ya did it");
             whoWon = "X";
         }
         else if (oMainTracker.contains("j") && oMainTracker.contains("k") && oMainTracker.contains("l")) {
             win123.setVisibility(View.VISIBLE);
             WIN();
-            Log.d("test", "good job, ya did it");
             whoWon = "O";
         }
         else if (xMainTracker.contains("d") && xMainTracker.contains("e") && xMainTracker.contains("f")) {
@@ -627,6 +634,7 @@ public class MainActivity extends AppCompatActivity {
             WIN();
             whoWon = "O";
         }
+        // if all selected but no win, call CATS(); game
         else if (im1.getVisibility() == View.VISIBLE && im2.getVisibility() == View.VISIBLE &&
                  im3.getVisibility() == View.VISIBLE && im4.getVisibility() == View.VISIBLE &&
                  im5.getVisibility() == View.VISIBLE && im6.getVisibility() == View.VISIBLE &&
@@ -662,7 +670,6 @@ public class MainActivity extends AppCompatActivity {
         else if (player1 == "O" && whoWon == "O")  {
             p1ScoreTracker = p1ScoreTracker + 1;
             score1.setText(p1ScoreTracker.toString());
-            Log.d("playCount", p1ScoreTracker.toString());
             Log.d("playCount", p1ScoreTracker.toString());
         }
         else if (player2 == "X" && whoWon == "X") {
