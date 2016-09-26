@@ -192,38 +192,38 @@
         android:layout_alignLeft="@id/btn7"
         android:layout_below="@+id/btn7"
         android:layout_marginTop="10dp"
-        android:layout_alignRight="@id/btn7"
         android:id="@+id/p1s"
-        android:text="Player 1 Score:"
-        android:visibility="invisible"/>
+        android:text="Player 1 Wins:"
+        android:visibility="invisible"
+        android:layout_toStartOf="@+id/win258" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_alignLeft="@id/btn7"
         android:layout_below="@+id/p1s"
         android:layout_marginTop="10dp"
-        android:layout_alignRight="@id/btn7"
         android:id="@+id/player1Score"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:layout_alignEnd="@+id/p1s"
+        android:layout_alignStart="@+id/p1s" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_alignLeft="@id/btn9"
         android:layout_below="@+id/btn9"
         android:layout_marginTop="10dp"
         android:layout_alignRight="@id/btn9"
         android:id="@+id/p2s"
-        android:text="Player 2 Score"
-        android:visibility="invisible"/>
+        android:text="Player 2 Wins:"
+        android:visibility="invisible"
+        android:layout_toEndOf="@+id/win258" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_alignLeft="@id/btn9"
         android:layout_below="@+id/p2s"
         android:layout_marginTop="10dp"
         android:layout_alignRight="@id/btn9"
         android:id="@+id/player2Score"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:layout_toEndOf="@+id/win258" />
 
     <ImageView
         android:layout_width="50dp"
@@ -320,7 +320,7 @@
 
 
     <!--Overlay for User Choice-->
-   <RelativeLayout
+  <RelativeLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:id="@+id/overlay"

@@ -10,7 +10,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     String o9Track = "r";
     String xMainTracker = "";
     String oMainTracker = "";
-    String whichFired;
-    Integer p1ScoreTracker;
-    Integer p2ScoreTracker;
+    String whoWon;
+    Integer p1ScoreTracker = 1;
+    Integer p2ScoreTracker = 1;
 
 
     @Override
@@ -519,24 +518,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test", xMainTracker);
         Log.d("test", "otrack:" + oMainTracker.toString());
 
-        String x147Win = "adg";
-        String x258Win = "beh";
-        String x369Win = "cfi";
-        String x123Win = "abc";
-        String x456Win = "def";
-        String x789Win = "ghi";
-        String x159Win = "aei";
-        String x357Win = "ceg";
-
-        String o147Win = "jmp";
-        String o258Win = "knq";
-        String o369Win = "lor";
-        String o123Win = "jkl";
-        String o456Win = "mno";
-        String o789Win = "pqr";
-        String o159Win = "jnr";
-        String o357Win = "lnp";
-
         ImageView im1 = (ImageView) findViewById(R.id.xo1);
         ImageView im2 = (ImageView) findViewById(R.id.xo2);
         ImageView im3 = (ImageView) findViewById(R.id.xo3);
@@ -557,95 +538,94 @@ public class MainActivity extends AppCompatActivity {
         ImageView win357 = (ImageView) findViewById(R.id.win357);
         ImageView cats = (ImageView) findViewById(R.id.winCATS);
 
-
         // Vertical Cases || 1=4=7, 2=5=8, and 3=6=9
-        if (sameChars(xMainTracker, x147Win)) {
+        if (xMainTracker.contains("a") && xMainTracker.contains("d") && xMainTracker.contains("g")) {
             win147.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o147Win)) {
+        else if (oMainTracker.contains("j") && oMainTracker.contains("m") && oMainTracker.contains("p")) {
             win147.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
-            whichFired = "O";
+            whoWon = "O";
         }
-        else if (sameChars(xMainTracker, x258Win)) {
+        else if (xMainTracker.contains("b") && xMainTracker.contains("e") && xMainTracker.contains("h")) {
             win258.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if(sameChars(oMainTracker, o258Win)) {
+        else if(oMainTracker.contains("k") && oMainTracker.contains("n") && oMainTracker.contains("q")) {
             win258.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
-        else if (sameChars(xMainTracker, x369Win)) {
+        else if (xMainTracker.contains("c") && xMainTracker.contains("f") && xMainTracker.contains("i")) {
             win369.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o369Win)) {
+        else if (oMainTracker.contains("l") && oMainTracker.contains("o") && oMainTracker.contains("r")) {
             win369.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
 
         // Horizontal Cases|| 1=2=3, 4=5=6, 7=8=9
-        else if (sameChars(xMainTracker, x123Win)) {
+        else if (xMainTracker.contains("a") && xMainTracker.contains("b") && xMainTracker.contains("c")) {
             win123.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
-            whichFired = "x";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o123Win)) {
+        else if (oMainTracker.contains("j") && oMainTracker.contains("k") && oMainTracker.contains("l")) {
             win123.setVisibility(View.VISIBLE);
             WIN();
             Log.d("test", "good job, ya did it");
-            whichFired = "O";
+            whoWon = "O";
         }
-        else if (sameChars(xMainTracker, x456Win)) {
+        else if (xMainTracker.contains("d") && xMainTracker.contains("e") && xMainTracker.contains("f")) {
             win456.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if(sameChars(oMainTracker, o456Win)) {
+        else if(oMainTracker.contains("m") && oMainTracker.contains("n") && oMainTracker.contains("o")) {
            win456.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
-        else if (sameChars(xMainTracker, x789Win)) {
+        else if (xMainTracker.contains("g") && xMainTracker.contains("h") && xMainTracker.contains("i")) {
             win789.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o789Win)) {
+        else if (oMainTracker.contains("p") && oMainTracker.contains("q") && oMainTracker.contains("r")) {
             win789.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
 
         // Diagonal Cases || 1=5=9, 3=5=7
-        else if (sameChars(xMainTracker, x159Win)) {
+        else if (xMainTracker.contains("a") && xMainTracker.contains("e") && xMainTracker.contains("i")) {
             win159.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o159Win)) {
+        else if (oMainTracker.contains("j") && oMainTracker.contains("n") && oMainTracker.contains("r")) {
             win159.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
-        else if (sameChars(xMainTracker, x357Win)) {
+        else if (xMainTracker.contains("c") && xMainTracker.contains("e") && xMainTracker.contains("g")) {
             win357.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "X";
+            whoWon = "X";
         }
-        else if (sameChars(oMainTracker, o357Win)) {
+        else if (oMainTracker.contains("l") && oMainTracker.contains("n") && oMainTracker.contains("p")) {
             win357.setVisibility(View.VISIBLE);
             WIN();
-            whichFired = "O";
+            whoWon = "O";
         }
         else if (im1.getVisibility() == View.VISIBLE && im2.getVisibility() == View.VISIBLE &&
                  im3.getVisibility() == View.VISIBLE && im4.getVisibility() == View.VISIBLE &&
@@ -660,32 +640,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void WIN() {
-        RESET();
-
         TextView ps1 = (TextView) findViewById(R.id.p1s);
         TextView ps2 = (TextView) findViewById(R.id.p2s);
         TextView score1 = (TextView) findViewById(R.id.player1Score);
         TextView score2 = (TextView) findViewById(R.id.player2Score);
 
-        //ps1.setVisibility(View.VISIBLE);
-        //ps2.setVisibility(View.VISIBLE);
-        //score1.setVisibility(View.VISIBLE);
-        //score2.setVisibility(View.VISIBLE);
+        ps1.setVisibility(View.VISIBLE);
+        ps2.setVisibility(View.VISIBLE);
+        score1.setVisibility(View.VISIBLE);
+        score2.setVisibility(View.VISIBLE);
+
+        Log.d("playCount", p1ScoreTracker.toString());
+        Log.d("playCount", p2ScoreTracker.toString());
 
 
-
-       /* if (player1.contains(whichFired)) {
-            p1ScoreTracker++;
+        if (player1 == "X" && whoWon == "X")  {
+            p1ScoreTracker = p1ScoreTracker + 1;
             score1.setText(p1ScoreTracker.toString());
-            Log.d("pls", p1ScoreTracker.toString());
-            Log.d("pls", p2ScoreTracker.toString());
+            Log.d("playCount", p1ScoreTracker.toString());
         }
-        else if (player2.contains(whichFired)) {
-            p2ScoreTracker++;
+        else if (player1 == "O" && whoWon == "O")  {
+            p1ScoreTracker = p1ScoreTracker + 1;
+            score1.setText(p1ScoreTracker.toString());
+            Log.d("playCount", p1ScoreTracker.toString());
+            Log.d("playCount", p1ScoreTracker.toString());
+        }
+        else if (player2 == "X" && whoWon == "X") {
+            p2ScoreTracker = p2ScoreTracker + 1;
             score2.setText(p2ScoreTracker.toString());
-            Log.d("pls", p1ScoreTracker.toString());
-            Log.d("pls", p2ScoreTracker.toString());*/
+            Log.d("playCount", p2ScoreTracker.toString());
         }
+        if (player2 == "O" && whoWon == "O")  {
+            p2ScoreTracker = p2ScoreTracker + 1;
+            score1.setText(p2ScoreTracker.toString());
+            Log.d("playCount", p2ScoreTracker.toString());
+        }
+
+        RESET();
+    }
     public void CATS() {
         RESET();
     }
@@ -716,15 +708,6 @@ public class MainActivity extends AppCompatActivity {
         im8.setVisibility(View.INVISIBLE);
         im9.setVisibility(View.INVISIBLE);
     }
-
-    private boolean sameChars(String firstStr, String secondStr) {
-        char[] first = firstStr.toCharArray();
-        char[] second = secondStr.toCharArray();
-        Arrays.sort(first);
-        Arrays.sort(second);
-        return Arrays.equals(first, second);
-    }
-
     public void RESET_LINES() {
         ImageView win147 = (ImageView) findViewById(R.id.win147);
         ImageView win258 = (ImageView) findViewById(R.id.win258);
