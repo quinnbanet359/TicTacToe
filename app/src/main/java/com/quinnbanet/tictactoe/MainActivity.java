@@ -652,15 +652,14 @@ public class MainActivity extends AppCompatActivity {
         TextView ps2 = (TextView) findViewById(R.id.p2s);
         TextView score1 = (TextView) findViewById(R.id.player1Score);
         TextView score2 = (TextView) findViewById(R.id.player2Score);
-
+ /* DISABLE SCORE TRACKER
         ps1.setVisibility(View.VISIBLE);
         ps2.setVisibility(View.VISIBLE);
         score1.setVisibility(View.VISIBLE);
         score2.setVisibility(View.VISIBLE);
-
+*/
         Log.d("playCount", p1ScoreTracker.toString());
         Log.d("playCount", p2ScoreTracker.toString());
-
 
         if (player1 == "X" && whoWon == "X")  {
             p1ScoreTracker = p1ScoreTracker + 1;
